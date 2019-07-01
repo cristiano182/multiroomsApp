@@ -94,7 +94,7 @@ export const resetSkip = () => {
 export const paginationData = (skip, room) => {
     return async dispatch => {
         try {
-            socket.emit('Pagination', skip, room)
+            socket.emit('pagination', skip, room)
         } catch (error) {
             alert('Tente novamente')
         }
@@ -103,7 +103,7 @@ export const paginationData = (skip, room) => {
 export const getData = () => {
     return async dispatch => {
         try {
-            socket.on('Messages', (msg, skip, room, initialGet) => {
+            socket.on('messages', (msg, skip, room, initialGet) => {
                 if (!skip)
                     dispatch({
                         type: GET_DATA,
@@ -130,7 +130,7 @@ export const getData = () => {
 export const sendData = (message, room) => {
     return async dispatch => {
         try {
-            await socket.emit('Messages', message[0], room);
+            await socket.emit('messages', message[0], room);
             dispatch({
                 type: SEND_DATA,
                 payload: message,
